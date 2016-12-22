@@ -33,10 +33,17 @@ public class PatternTest {
         }
         System.out.println();
 
-        Pattern pattern3 = Pattern.compile("(\\w)(?=\\1\\1\\1$)(\\1)+");
+        Pattern pattern3 = Pattern.compile("(\\w)(?=\\1\\1\\1)(\\1)+");
         Matcher matcher3 = pattern3.matcher(format);
         while (matcher3.find()) {
             System.out.print(matcher3.group() + " | ");
+        }
+        System.out.println();
+
+        Pattern pattern4 = Pattern.compile("(\\w)((?=\\1\\1\\1)(\\1))+");
+        Matcher matcher4 = pattern4.matcher(format);
+        while (matcher4.find()) {
+            System.out.print(matcher4.group() + " | ");
         }
         System.out.println();
     }
