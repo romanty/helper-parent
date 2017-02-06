@@ -1,0 +1,153 @@
+<#include "/common/page_common.html" />
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>胤宝</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <link rel="stylesheet" href="${ctx}/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="${ctx}/css/index.css"/>
+    <link rel="stylesheet" href="${ctx}/css/jquery.fullPage.css" />
+    <script src="${ctx}/js/html5shiv.js"></script>
+    <#include "/common/head_common.html" />
+</head>
+<body>
+<div class="header">
+    <div class="header-container clearfix">
+        <div id="msgcount"></div>
+        <input type="text" id="text"> <button onclick="send()">Send</button>
+        <a href="${ctx}/"><img src="${ctx}/img/logo.png"/></a>
+        <div class="fr">
+            <a href="${ctx}/">购趣味,奢生活</a>
+        </div>
+    </div>
+</div>
+<div class="swiper-container">
+    <div id="dowebok">
+        <div class="section active">
+            <div class="bg bg-1">
+                <!--<img src="img/bg-1.png" style="width:100%;height:100%;" alt="">-->
+
+            </div>
+            <div class="main" >
+                <div class="main-container">
+                    <img src="/qrcode.svl"/>
+                    <div class="main-text">
+                        <p>通过胤宝APP扫描本页二维码<br />实现银联支付</p>
+                    </div>
+                </div>
+            </div>
+            <div class="pay-footer">
+                <p class="qiyi-footer-txt1">企业服务热线：${server_telephone}<a href="${ctx}/aggreement" class="agree colorfff"  target="_blank">《服务协议》</a></p>
+            </div>
+        </div>
+        <div class="section">
+            <div class="bg bg-2"></div>
+            <div class="section-container">
+                <p class="swiper-slide-2" >
+                    <img src="${ctx}/img/iphone1.png"/>
+                </p>
+                <div class="section2">
+
+                    <h3 class="section2-h3">奢购闲置商品 购买趣味无限</h3>
+                    <div class="section2-txt">
+                        <p class="section2-p1">
+                            <span class="star"></span>
+                            <span>多款奢品定时上线</span>
+                        </p>
+                        <p class="section2-p2">
+                            <span class="star"></span>
+                            <span>发现时髦高端商品</span>
+                        </p>
+                        <p class="section2-p3">
+                            <span class="star"></span>
+                            <span>爱购爱收藏，前卫秀真我</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="bg bg-3"></div>
+            <div class="section-container">
+                <p class="swiper-slide-3">
+                    <img src="${ctx}/img/iphone3.png" alt="" />
+                </p>
+                <div class="section3">
+                    <h3 class="section3-h3">一键操作 闲置奢品  随心寄卖</h3>
+                    <div class="section3-txt">
+                        <p class="section3-p"><span>不需要的奢侈品，统统可以在线寄售回收，代卖都可以。</span></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="section">
+            <div class="bg bg-4"></div>
+            <div class="section-container clearfix">
+                <div class="section4-img clearfix">
+                    <div class="section4-img1">
+                        <img src="${ctx}/img/img1.png" />
+                    </div>
+                    <div class="section4-img2">
+                        <img src="${ctx}/img/img2.jpg" />
+                    </div>
+                    <div class="section4-img3">
+                        <img src="${ctx}/img/img3.png" />
+                    </div>
+                    <div class="section4-img4">
+                        <img src="${ctx}/img/img4.png" />
+                    </div>
+                    <div class="section4-img5">
+                        <img src="${ctx}/img/img5.jpg" />
+                    </div>
+                </div>
+                <div class="section4-txt">
+                    <h3 class="section4-h3">购趣味，奢生活</h3>
+                    <div class="section4-zheng">
+                        <img src="${ctx}/img/zheng.png" alt="" />
+                    </div>
+                    <p class="section4-p">
+                        胤宝官方所售出商品<br /> 全部经过专业鉴定师鉴定。<br /> 100%正品保障
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="fp-nav" class="right" style="color: rgb(0, 0, 0); margin-top: -43.5px;">
+        <ul>
+        </ul>
+    </div>
+</div>
+<script src="${ctx}/js/jquery.fullPage.min.js"></script>
+<script src="${ctx}/js/jquery.easing.min.js"></script>
+<script src="${ctx}/js/index.js?v=${v_version!}"></script>
+<script src="${ctx}/js/common/common_utils.js?v=${v_version!}"></script>
+<script type="text/javascript">
+    var websocket;
+    if ('WebSocket' in window) {
+        websocket = new WebSocket("ws://192.168.1.123:8080/webSocketServer");
+    } else if ('MozWebSocket' in window) {
+        websocket = new MozWebSocket("ws://localhost:8080/Origami/webSocketServer");
+    } else {
+        websocket = new SockJS("http://localhost:8080/Origami/sockjs/webSocketServer");
+    }
+    websocket.onopen = function (evnt) {
+    };
+    websocket.onmessage = function (evnt) {
+        $("#msgcount").html("(<font color='red'>"+evnt.data+"</font>)")
+    };
+    websocket.onerror = function (evnt) {
+    };
+    websocket.onclose = function (evnt) {
+    }
+    //发送消息
+    function send(){
+        var message = document.getElementById('text').value;
+        websocket.send(message);
+    }
+</script>
+</body>
+</html>

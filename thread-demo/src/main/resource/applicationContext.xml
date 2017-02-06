@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="   
+         http://www.springframework.org/schema/beans 
+         http://www.springframework.org/schema/beans/spring-beans-3.1.xsd   
+   		 http://www.springframework.org/schema/context 
+   		 http://www.springframework.org/schema/context/spring-context-3.1.xsd
+         http://www.springframework.org/schema/mvc
+         http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd ">
+	<!--&lt;!&ndash; 数据源 &ndash;&gt;-->
+	<!--<import resource="classpath*:/spring/spring-config-datasource.xml" />-->
+    <!--&lt;!&ndash; 邮件 &ndash;&gt;-->
+    <!--<import resource="classpath*:/spring/spring-email.xml" />-->
+ <!---->
+    <!--&lt;!&ndash; 模板 &ndash;&gt;-->
+    <!--<import resource="classpath*:/spring/spring-freeMarker.xml" />-->
+    <!--&lt;!&ndash; 事务 &ndash;&gt;-->
+    <!--<import resource="classpath*:/spring/spring-config-service.xml" />-->
+    <!--&lt;!&ndash; 缓存 &ndash;&gt;-->
+    <!--<import resource="classpath*:/spring/spring-redis.xml" />-->
+    <!---->
+    <!--<import resource="classpath*:/spring/spring-producer.xml" />-->
+    <!--<import resource="classpath*:/spring/spring-consumer.xml" />-->
+	<!--<import resource="classpath*:/spring/es_applicationContext.xml" />-->
+
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean id="fastJsonHttpMessageConverter"
+				  class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+			<bean id="stringHttpMessageConverter"
+				  class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<!--<bean id="userInterceptor" class="com.code.interceptor.UserInterceptor">-->
+		<!--<property name="excludeUrls">-->
+			<!--<set>-->
+				<!--<value>/</value>-->
+				<!--<value>/aggreement</value>-->
+				<!--<value>/api/login</value>-->
+				<!--<value>/api/checkFirstUser</value>-->
+				<!--<value>/api/register</value>-->
+				<!--<value>/api/checkNickName</value>-->
+				<!--<value>/api/forgetFirst</value>-->
+				<!--<value>/api/forget</value>-->
+				<!--<value>/api/sms/sendReg</value>-->
+				<!--<value>/api/sms/sendForget</value>-->
+				<!--<value>/api/adverts</value>-->
+				<!--<value>/api/index</value>-->
+				<!--<value>/api/labels</value>-->
+				<!--<value>/api/categories</value>-->
+                <!--<value>/api/queryLabelBrands</value>-->
+                <!--<value>/api/prodView</value>-->
+                <!--<value>/api/oneProdView</value>-->
+                <!--<value>/api/prodView/simple</value>-->
+                <!--<value>/api/searches</value>-->
+                <!--<value>/api/sf/notify</value>-->
+                <!--<value>/pay</value>-->
+                <!--<value>/toPay/pcScan/payment/orderPayInfo</value>-->
+                <!--<value>/toPay/longConnection</value>-->
+				<!--<value>/notice/pay/lianAsyncNotice</value>-->
+				<!--<value>/notice/pay/lianSyncNotice</value>-->
+				<!--<value>/notice/pay/alipayAsyncNotice</value>-->
+				<!--<value>/notice/pay/wxAsyncNotice</value>-->
+				<!--<value>/api/login/verifyFlag</value>-->
+				<!--<value>/api/register/verifyFlag</value>-->
+				<!--<value>/api/returnAddress</value>-->
+				<!--<value>/download</value>-->
+				<!--<value>/api/searchesByString</value>-->
+				<!--<value>/api/defineLabelSearch</value>-->
+				<!--<value>/api/firstCategoryList</value>-->
+				<!--<value>/api/identify/prodAcessory</value>-->
+				<!--<value>/api/identify/prodBrand</value>	-->
+				<!--<value>/api/h5/uploadIdeOrderPic</value>-->
+				<!--<value>/api/qq/login</value>-->
+				<!--<value>/api/wx/login</value>-->
+				<!--<value>/api/thirdLogin/checkPhone</value>-->
+				<!--<value>/api/thirdLogin/bindPhone</value>-->
+				<!--<value>/api/thirdLogin/setPaw</value>-->
+				<!--<value>/api/sms/sendThirdLogin</value>-->
+				<!--<value>/api/version/check</value>-->
+				<!--<value>/register</value>-->
+				<!--<value>/register/setPwd</value>-->
+				<!--<value>/sms/sendReg</value>-->
+				<!--<value>/checkFirstUser</value>-->
+				<!--<value>/register/stepTwo</value>-->
+				<!--<value>/pc/qcback</value>-->
+				<!--<value>/pc/qq/codeLogin</value>-->
+				<!--<value>/toLogin</value>-->
+				<!--<value>/login</value>-->
+				<!--<value>/login/verifyFlag</value>-->
+				<!--<value>/toLogin/longConnection</value>-->
+				<!--<value>/pcScan/loginAuth</value>-->
+				<!--<value>/sms/sendForget</value>-->
+				<!--<value>/toWxLogin</value>-->
+				<!--<value>/pc/wx/login</value>-->
+				<!--<value>/thirdLogin/checkPhone</value>-->
+				<!--<value>/thirdLogin/setPaw</value>-->
+				<!--<value>/thirdLogin/bindPhone</value>-->
+				<!--<value>/sms/sendThirdLogin</value>-->
+				<!--<value>/pc/wx/unbindWx</value>-->
+				<!--<value>/pc/qq/unbindQQ</value>-->
+				<!--<value>/forgetPwd/first</value>-->
+				<!--<value>/forgetPwd/second</value>-->
+				<!--<value>/forgetPwd/three</value>-->
+				<!--<value>/forgetPwd/four</value>-->
+				<!--<value>/forgetPwd/five</value>-->
+				<!--<value>/forgetPwd/six</value>-->
+				<!--<value>/logout</value>-->
+				<!--<value>/404</value>-->
+				<!--<value>/500</value>-->
+			<!--</set>-->
+		<!--</property>-->
+		<!--<property name="pcPaymentUrls">-->
+			<!--<set>-->
+<!--&lt;!&ndash;                 <value>/pay/\S*</value> &ndash;&gt;-->
+				<!--<value>/member/\S*</value>-->
+			<!--</set>-->
+		<!--</property>-->
+	<!--</bean>-->
+	<!--<mvc:interceptors>-->
+		<!--<ref bean="userInterceptor"/>-->
+	<!--</mvc:interceptors>-->
+	<!-- 上传附件 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8" />
+		<!-- 上传最大限制  20M-->
+		<property name="maxUploadSize" value="20971520" />
+		<property name="maxInMemorySize" value="40960" />
+	   <!--  resolveLazily属性启用是为了推迟文件解析，以便在UploadAction 中捕获文件大小异常-->
+		<property name="resolveLazily" value="true"/>
+	</bean>
+
+    <context:component-scan base-package="com.study" />
+
+</beans>
